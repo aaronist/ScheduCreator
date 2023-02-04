@@ -6,12 +6,12 @@ Time = namedtuple("Time", "hour minute")
 schedule = {}
 courseDict = {}
 
-def getClassInfo():
-    userInput = input().split()
-    department = userInput[0]
-    courseNumber = userInput[1]
-    term = userInput[2]
-    year = userInput[3]
+def getClassInfo(department, courseNumber, term, year):
+    #userInput = input().split()
+    #department = userInput[0]
+    #courseNumber = userInput[1]
+    #term = userInput[2]
+    #year = userInput[3]
 
     if department == "I&C SCI":
         department = "I%26C SCI"
@@ -53,7 +53,7 @@ def getCourse(sectionCode, course):
     if course.sectionType == "Lec":
         result += "Final Exam: {}\n".format(course.final)
         
-    result += "Status: {}\n".format(course.status)
+    result += "Status: {}\n\n".format(course.status)
 
     return result
 
@@ -73,7 +73,6 @@ def getSection(sections, i, courseDict):
         startHour = int("{}{}".format(time[0], time[1]))
         startMinute = int("{}{}".format(time[3], time[4]))
         
-
         if time[-1] == "p":
             endHour = int("{}{}".format(time[-6], time[-5])) + 12
             endMinute = int("{}{}".format(time[-3], time[-2]))
@@ -108,7 +107,7 @@ def getSection(sections, i, courseDict):
             endMinute = int("{}{}".format(time[-3], time[-2]))
         
         end = round(endHour + (endMinute / 60), 2)
-    print(endHour)
+
     c = Course(sectionType, sectionNum, units, instructor, days, time, building, final, status, start, end)
     courseDict[sectionCode] = c
 
@@ -117,14 +116,15 @@ def getSection(sections, i, courseDict):
 def addClass(sectionCode):
     schedule[sectionCode] = courseDict[sectionCode]
 
-
 def checkTime(start1, end1, start2, end2):
     # Time 1 is what we WANT to add... time 2 is already in schedule
     return not(start2 <= start1 <= end2 or start2 <= end1 <= end2)
-    
+
+def sortByInstructor():
+    return sorted()
 
 #print(addClass(1))
-print(getClassInfo())
+print(getClassInfo("I&C SCI", "53", "Winter", "2023"))
 
 #serInput2 = input()
 #if userInput2 == sectionCode:

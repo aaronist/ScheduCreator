@@ -3,7 +3,7 @@ body {
 }
 
 
-p {
+#header {
     text-align: center;
     font-size: 22px;
     font-family: 'Noto Sans JP', sans-serif;
@@ -12,27 +12,54 @@ p {
 
 input[name="term"] {
     position: relative;
-    left: 15%;
+    left: 25%;
 }
 
 
-input[name="class"] {
-    margin: auto;
-    display: block;
+input[name="department"] {
+    position: relative;
+    left: 34%;
 }
 
 
 input[name="course"] {
     position: relative;
-    left: 75%;
+    left: 43%;
 }
 
 
-input[type=text] {
-    width: 500px;
+input[type="text"] {
+    width: 150px;
+    display: inline-block;
+    margin-right:20px;
 }
 
 
-input[type=text]:focus {
+input[type="text"]:focus {
     border: 3px solid #555;
+}
+
+
+button {
+    position: relative;
+    left: 47%;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+.class-display {
+    margin: auto;
+    height: 256px;
+    width: 1280px;
+    border: 3px solid #000000;
+    background-color:rgb(255, 213, 115);
+    overflow: auto;
+}
+
+
+#step5 {
+    font: 16px/26px 'Noto Sans JP', sans-serif;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }

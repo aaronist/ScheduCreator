@@ -1,9 +1,20 @@
 <html>
 
-<p>Create your schedule below!</p>
+<p id="header">Create your schedule below!</p>
 
 <div>
-<input list="terms" name="term" onchange="document.getElementById('step2').disabled = false">
+<input list="terms" name="term" onchange="function step1Change() {
+        if (!document.getElementById('step2').disabled) {
+            document.getElementById('step3').disabled = true;
+            document.getElementsByName('course')[0].value = '';
+            document.getElementsByName('course')[0].placeholder = 'Course';
+            document.getElementById('step4').disabled = true;
+            document.getElementById('step5').style.display = 'none';
+        }
+        document.getElementById('step2').disabled = false;
+        document.getElementsByName('department')[0].value = '';
+        document.getElementsByName('department')[0].placeholder = 'Department';
+} step1Change()" placeholder="Term">
   <datalist id="terms">
     <option value="Winter 2023">Winter 2023</option>
     <option value="Fall 2022">Fall 2022</option>
@@ -12,8 +23,17 @@
     <option value="Fall 2021">Fall 2021</option>
   </datalist>
 
-<input id="step2" list="classes" name="class" onchange="document.getElementById('step3').disabled = false" disabled>
-  <datalist id="classes">
+<input id="step2" list="departments" name="department" onchange="function step2Change() {
+    if (!document.getElementById('step3').disabled) {
+        document.getElementById('step4').disabled = true;
+        document.getElementById('step4').disabled = true;
+        document.getElementById('step5').style.display = 'none';
+    }
+    document.getElementById('step3').disabled = false;
+    document.getElementsByName('course')[0].value = '';
+    document.getElementsByName('course')[0].placeholder = 'Course';
+} step2Change()" placeholder="Department" disabled>
+  <datalist id="departments">
     <option value="I&C SCI">I&C SCI</option>
     <option value="BIOSCI">BIOSCI</option>
     <option value="COMPSCI">COMPSCI</option>
@@ -21,7 +41,7 @@
     <option value="IN4MATX">IN4MATX</option>
   </datalist>
 
-<input id="step3" list="courses" name="course" disabled>
+<input id="step3" list="courses" name="course" placeholder="Course" onchange="document.getElementById('step4').disabled = false" disabled>
   <datalist id="courses">
     <option value="33">33</option>
     <option value="2A">2A</option>
@@ -29,6 +49,38 @@
     <option value="1">1</option>
     <option value="43">43</option>
   </datalist>
+
+<button id="step4" onclick="document.getElementById('step5').style.display = 'block'" disabled>Search</button>
+</div>
+
+<br>
+
+<div class="class-display">
+    <p id="step5" style="display: none">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sagittis dictum pretium. Quisque ultrices neque mollis sapien posuere porta. Morbi dictum at quam ac venenatis. Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec rhoncus ipsum. Donec elit sapien, semper at tristique id, ornare at felis. Fusce malesuada interdum molestie. Integer sodales pharetra sapien, ac fermentum quam tincidunt nec. Morbi sed hendrerit purus. Vestibulum consequat ullamcorper lectus sed interdum. Phasellus vel nunc scelerisque, imperdiet sapien eleifend, malesuada ante.
+
+        Suspendisse eu suscipit diam, sit amet condimentum enim. Fusce est enim, commodo ac ligula eu, laoreet cursus urna. Nullam tempus non enim at rutrum. Morbi sit amet feugiat lectus. Pellentesque ut nisi egestas, molestie felis vel, bibendum odio. Proin a ante id urna vehicula venenatis. Nunc lacinia elit nec mollis malesuada. Mauris placerat placerat orci nec tincidunt. Integer interdum molestie nibh. Morbi ac augue at justo placerat condimentum at sit amet ligula. Sed sagittis, enim a pellentesque eleifend, purus metus placerat metus, et lobortis justo quam id nisi. Nulla bibendum rutrum libero non luctus. Phasellus consequat purus quis ultrices maximus. Sed ac tortor nisl.
+        
+        Cras tempor tellus sed pellentesque vestibulum. Duis laoreet, tellus et finibus congue, leo magna bibendum lectus, vitae suscipit est dolor eget dui. Nam euismod sapien risus, ut ultricies augue posuere sed. Fusce sed odio eget leo pellentesque consequat. Phasellus laoreet, dui eu condimentum laoreet, lorem tortor pretium purus, ac faucibus dolor neque vitae magna. Quisque maximus ligula sit amet nunc placerat faucibus. Suspendisse dapibus dapibus vestibulum. Vestibulum laoreet maximus leo, vel bibendum ipsum. Proin vulputate, ipsum vitae ornare varius, tellus mauris fermentum sem, vitae venenatis orci felis quis metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+        
+        Nam porta dapibus nibh sed vehicula. Etiam ullamcorper vehicula ante, a bibendum magna dictum a. Sed egestas lorem id risus pharetra condimentum. Suspendisse potenti. Donec volutpat at leo eget feugiat. Vestibulum id augue at eros rutrum mollis. Cras in nisi at nisi porttitor efficitur.
+        
+        Maecenas ac mauris ullamcorper enim posuere scelerisque id porta dui. Cras ac auctor felis. Sed vehicula pulvinar diam. Donec nec turpis dictum, feugiat dui vitae, bibendum ante. Morbi sagittis felis sem, quis aliquet odio rhoncus ut. Phasellus scelerisque a orci at scelerisque. Praesent ut facilisis nisi. Cras quis convallis est.
+        
+        In hac habitasse platea dictumst. Nunc vel velit enim. Nunc sagittis dolor vitae augue consequat, id mollis mauris faucibus. Mauris sollicitudin ac sapien eget semper. Suspendisse iaculis turpis sit amet est sollicitudin, quis vulputate lacus congue. Suspendisse vestibulum elit id dui vulputate, ac ullamcorper urna posuere. Aliquam a placerat velit. Integer pretium euismod mauris eget vestibulum. Sed dapibus mi at eros commodo, sed convallis elit placerat. Duis interdum interdum tortor eget congue.
+        
+        Aliquam erat volutpat. Praesent ut convallis elit, eu ultricies justo. Curabitur at porttitor magna. Sed viverra luctus felis vitae interdum. Sed faucibus, lectus sit amet porttitor feugiat, libero risus interdum massa, nec volutpat est nisl id quam. Cras sodales arcu at orci suscipit, in suscipit purus consectetur. Aliquam sagittis eros a enim hendrerit aliquet. Maecenas vehicula sollicitudin ipsum, non tempus metus hendrerit quis. Vivamus id fringilla quam. Nunc hendrerit ex eu porttitor malesuada. Proin congue sed nulla eget faucibus. Aenean interdum erat at diam rutrum, quis vestibulum neque gravida. Etiam eget erat a purus elementum vulputate vel ac erat. Curabitur nec nunc ut lacus maximus facilisis. Maecenas tempor elit in ligula porta sollicitudin sed sit amet quam.
+        
+        Proin et laoreet mauris. Fusce gravida convallis eros vel volutpat. Nam id neque orci. Donec gravida eros quis turpis vulputate pharetra. Curabitur eu neque faucibus, congue nisl vitae, gravida enim. Sed urna elit, convallis ut euismod sed, lobortis at est. Fusce elit lacus, maximus in pulvinar ac, condimentum cursus arcu. Aliquam id porta libero.
+        
+        Etiam felis justo, malesuada a mauris eu, interdum congue felis. Nam nec velit vel diam imperdiet ultrices. Suspendisse et eros orci. Vivamus maximus dui sit amet pulvinar dictum. Phasellus ac porttitor enim, ac rhoncus sem. Vivamus lobortis eu nulla et vulputate. Phasellus egestas finibus placerat. Aliquam semper augue quis laoreet rhoncus. Curabitur gravida erat at ultricies consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        
+        Pellentesque at metus sapien. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum dignissim nisi nulla, vel imperdiet quam viverra sit amet. Duis massa lacus, luctus pharetra pharetra quis, mollis quis lacus. Nulla at tempor elit, at viverra ex. Donec tempus sodales eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla vestibulum facilisis eros, vitae placerat metus gravida sed. Sed iaculis mi eget dignissim facilisis. Integer id enim mauris. Sed non nunc tempus mi blandit commodo a quis lacus. Pellentesque malesuada in eros vel pellentesque. Duis at ex eget nisi semper pharetra. Suspendisse cursus pellentesque eros, quis tempus neque egestas non. Nulla et sem quis ante venenatis elementum. Vivamus sed orci ac mi finibus tincidunt eu vitae justo.
+        
+        Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer dui metus, accumsan a elit a, ornare sollicitudin est. Nullam posuere nisl ex. Nulla semper enim metus, id mattis ex vulputate sed. Donec non urna a ex ultrices tempor. Aenean tristique tellus non felis posuere volutpat. Quisque ipsum sem, mollis eget eros id, faucibus cursus elit. Vestibulum et lectus iaculis libero molestie viverra. Nulla finibus interdum fermentum. Nam pulvinar tortor odio, quis rhoncus orci volutpat eu. Quisque feugiat id eros quis facilisis. Curabitur sed purus efficitur, tristique quam ac, mattis justo. Pellentesque venenatis leo vel arcu volutpat vehicula.
+        
+        Proin placerat lacus vel malesuada dapibus. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut porta, orci eget tincidunt dapibus, risus risus pretium nibh, non sagittis felis leo vitae leo. Sed cursus, turpis quis fringilla sollicitudin, libero arcu lobortis ligula, sed imperdiet orci ipsum quis tellus. Curabitur rutrum, lorem ac ultrices ultrices, lorem justo sagittis enim, non tincidunt ligula massa accumsan lorem. Sed porta est mauris, eget fringilla elit pretium sed. Fusce sit amet hendrerit ligula, nec accumsan lacus. Phasellus placerat rhoncus purus sed pellentesque.
+    <p>
 </div>
 
 </html>
