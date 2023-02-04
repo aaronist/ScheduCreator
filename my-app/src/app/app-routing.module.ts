@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { ScheduleComponent } from './pages/schedule/schedule.component';
+
+const routes: Routes = [
+  {path: 'search/', component: ScheduleComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
