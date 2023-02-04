@@ -9,18 +9,34 @@ export class service{
     expressBaseUrl:string = 'http://localhost:5000';
 
     constructor(private http:HttpClient){
-        this.http.get('http://localhost:5000').subscribe(data => {
-            console.log(data);
-          });
+
     }
 
-    private sendRequestToExpress(endpoint:string):Promise<any>{
+    private sendRequestToServerGet(endpoint:string):Promise<any>{
         let temp = this.http.get(this.expressBaseUrl+endpoint).toPromise();
         return Promise.resolve(temp);
     }
 
-    test(){
+    private sendRequestToServerPost(endpoint:string):Promise<any>{
+        let temp = this.http.get(this.expressBaseUrl+endpoint).toPromise();
+        return Promise.resolve(temp);
+    }
+
+    private sendRequestToServerPut(endpoint:string):Promise<any>{
+        let temp = this.http.get(this.expressBaseUrl+endpoint).toPromise();
+        return Promise.resolve(temp);
+    }
+
+    getInitialData(){
+        this.sendRequestToServerGet("").then((data) =>{
+
+            console.log("data is " + data['123']);
+            return null;
+        });
+              
         console.log("testing");
         
     }
+
+
 }

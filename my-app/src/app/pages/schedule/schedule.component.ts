@@ -10,6 +10,7 @@ export class ScheduleComponent {
   terms;
   departments;
   courseNumbers;
+  
 
   constructor(private service:service){
 
@@ -17,8 +18,8 @@ export class ScheduleComponent {
     this.departments = ['ICS'];
     this.courseNumbers = ['ICS31'];
 
-    this.service.test();
-
+    this.service.getInitialData();
+    
   }
 
   
