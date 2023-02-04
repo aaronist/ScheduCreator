@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ScheduleComponent } from './pages/schedule/schedule.component';
 
 const routes: Routes = [
-  {path: 'search/', component: ScheduleComponent}
+  {path: 'schedule', component: ScheduleComponent}
 ];
 
 @NgModule({
