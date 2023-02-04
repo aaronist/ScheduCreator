@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent {
+  terms;
+  departments;
+  courseNumbers;
 
+  constructor(){
+    this.terms = ['Spring:2023'];
+    this.departments = ['ICS'];
+    this.courseNumbers = ['ICS31'];
+
+  }
+
+  
 }

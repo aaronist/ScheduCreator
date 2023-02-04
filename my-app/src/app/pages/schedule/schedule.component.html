@@ -1,4 +1,43 @@
+<link rel="stylesheet">
+<div>
+    <h1 class =pt-5>
+        Search Class
+    </h1>
 
-<p>schedule works!</p>
+    <div>
+        <select>
+            <!--
+                term
+            -->
+            <option *ngFor ="let term of terms">
+                {{term}}
+            </option>
+        </select>
+
+        <select>
+            <!--
+                department
+            -->
+            <option *ngFor ="let department of departments">
+                {{department}}
+            </option>
+        </select>
+        
+        <select>
+            <!--
+                course #
+            -->
+            <option *ngFor ="let courseNumber of courseNumbers">
+                {{courseNumber}}
+            </option>
+        </select>
+        <button>
+            Search
+        </button>
+    </div>
+        <!--
+            serach result
+        -->
+</div>
 
 
