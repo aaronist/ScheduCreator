@@ -6,6 +6,55 @@ Time = namedtuple("Time", "hour minute")
 schedule = {}
 courseDict = {}
 
+def getTermInfo():
+    result = {"Winter 2022":{}, "Spring 2022":{}, "Fall 2022":{}, "Winter 2023":{}}
+    response = requests.get("https://api.peterportal.org/rest/v0/courses/all").json()
+    res = []
+    for i in range(len(response)):
+        if not(response[i]["department"] in res):
+            res.append(response[i]["department"])
+        #else:
+         #   res[response[i]["department"]].append(response[i]["number"])
+    
+    
+    responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
+    responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring").json()
+    responseF22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Fall").json()
+    responseW23 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2023%20Winter").json()
+
+    for j in range(len(res)):
+        responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department={}".format(res[j])).json() 
+        responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring&department={}".format(res[j])).json()
+        responseF22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Fall&department={}".format(res[j])).json()
+        responseW23 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2023%20Winter&department={}".format(res[j])).json()
+
+        result["Winter 2022"][res[j]] = responseW22["schools"][0]["departments"][0]["courses"]
+        result["Spring 2022"][res[j]] = responseS22["schools"][0]["departments"][0]["courses"]
+        result["Fall 2022"][res[j]] = responseF22["schools"][0]["departments"][0]["courses"]
+        result["Winter 2023"][res[j]] = responseW23["schools"][0]["departments"][0]["courses"]
+
+    print(result)
+    return
+
+    
+
+    print(responseW22)
+    return
+
+    result["Winter 2022"]["Departments"] = responseW22["schools"][0]["departments"]
+    result["Spring 2022"]["Departments"] = responseS22["schools"][0]["departments"]
+    result["Fall 2022"]["Departments"] = responseF22["schools"][0]["departments"]
+    result["Winter 2023"]["Departments"] = responseW23["schools"][0]["departments"]
+
+    result["Winter 2022"]["Courses"] = responseW22["schools"][0]["courses"]
+    result["Spring 2022"]["Courses"] = responseS22["schools"][0]["courses"]
+    result["Fall 2022"]["Courses"] = responseF22["schools"][0]["courses"]
+    result["Winter 2023"]["Courses"] = responseW23["schools"][0]["courses"]
+
+    return result
+
+
+
 def getClassInfo(department, courseNumber, term, year):
     #userInput = input().split()
     #department = userInput[0]
@@ -124,7 +173,7 @@ def sortByInstructor():
     return sorted()
 
 #print(addClass(1))
-print(getClassInfo("I&C SCI", "53", "Winter", "2023"))
+print(getTermInfo())
 
 #serInput2 = input()
 #if userInput2 == sectionCode:
