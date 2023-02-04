@@ -83,4 +83,40 @@
     <p>
 </div>
 
+<br>
+
+<p id="header" style="font-weight: bold">Your Schedule</p>
+
+<div class="schedule-display">
+    <table id="student-schedule" class="paddingBetweenCols">
+        <tr>
+            <th>Code</th>
+            <th>Course Title</th>
+            <th>Instructor</th>
+            <th>Days</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>35600</td>
+            <td>I&C SCI 45C</td>
+            <td>Thornton, A.</td>
+            <td>TuTh</td>
+            <td>5:00- 6:20p</td>
+            <td>EH 1200</td>
+            <td><button onclick="function dr(btn) { var row = btn.parentNode.parentNode; row.parentNode.removeChild(row); } dr(this)">Remove</button></td>
+        </tr>
+        <tr>
+            <td>33211</td>
+            <td>WRITING 45</td>
+            <td>Lerner, S.</td>
+            <td>TuTh</td>
+            <td>8:00- 9:20</td>
+            <td>DBH 1433</td>
+            <td><button onclick="function dr(btn) { var row = btn.parentNode.parentNode; row.parentNode.removeChild(row); } dr(this)">Remove</button></td>
+        </tr>
+    </table>
+</div>
+
 </html>
