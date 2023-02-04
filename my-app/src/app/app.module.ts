@@ -5,13 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ScheduleListComponent } from './components/schedule-list/schedule-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ScheduleComponent,
-    HomeComponent
+    HomeComponent,
+    ScheduleListComponent,
+
   ],
   imports: [
     BrowserModule,
