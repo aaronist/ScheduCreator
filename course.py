@@ -1,7 +1,8 @@
 from collections import namedtuple
 import requests
 
-Course = namedtuple("Course", "sectionType, sectionNum units instructor days time building final status")
+Course = namedtuple("Course", "sectionType, sectionNum units instructor days time building final status start end")
+Time = namedtuple("Time", "hour minute")
 schedule = {}
 courseDict = {}
 
@@ -11,6 +12,11 @@ def getClassInfo():
     courseNumber = userInput[1]
     term = userInput[2]
     year = userInput[3]
+
+    if department == "I&C SCI":
+        department = "I%26C SCI"
+    elif department == "CRM/LAW":
+        department = "CRM%2FLAW"
 
     response = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term={}%20{}&department={}&courseNumber={}".format(year, term, department, courseNumber)).json()
 
@@ -22,32 +28,36 @@ def getClassInfo():
     dept = courses["deptCode"]
 
     courseDict.clear()
-    
-    print("{} {} - {}".format(dept, num, name))
-    print()
+    result = "{} {} - {}\n".format(dept, num, name)
 
     for i in range(len(sections)):
-        printInfo(sections, i, courseDict)    
+        result += getSection(sections, i, courseDict)    
  
-    x = input("Enter a course code: ")
-    printCourse(x, courseDict[x])
+    return result
 
-def printCourse(sectionCode, course):
-    print("Course Code: {}".format(sectionCode))
-    print("Section: {} {}".format(course.sectionType, course.sectionNum))
-    print("Units: {}".format(course.units))
-    print("Instructor: {}".format(course.instructor))
-    print("Days: {}".format(course.days))
-    print("Time: {}".format(course.time))
-    print("Building: {}".format(course.building))
+def getCourse(sectionCode, course):
+    for c in schedule.values():
+        if not checkTime(course.start, course.end, c.start, c.end):
+            return ""
+
+    result = ""
+
+    result += "Course Code: {}\n".format(sectionCode)
+    result += "Section: {} {}\n".format(course.sectionType, course.sectionNum)
+    result += "Units: {}\n".format(course.units)
+    result += "Instructor: {}\n".format(course.instructor)
+    result += "Days: {}\n".format(course.days)
+    result += "Time: {}\n".format(course.time)
+    result += "Building: {}\n".format(course.building)
 
     if course.sectionType == "Lec":
-        print("Final Exam: {}".format(c.final))
+        result += "Final Exam: {}\n".format(course.final)
+        
+    result += "Status: {}\n".format(course.status)
 
-    print("Status: {}".format(course.status))
-    print()
+    return result
 
-def printInfo(sections, i, courseDict):
+def getSection(sections, i, courseDict):
     sectionCode = sections[i]["sectionCode"]
     sectionType = sections[i]["sectionType"]
     sectionNum = sections[i]["sectionNum"]
@@ -59,41 +69,62 @@ def printInfo(sections, i, courseDict):
     final = sections[i]["finalExam"]
     status = sections[i]["status"]
     
-    c = Course(sectionType, sectionNum, units, instructor, days, time, building, final, status)
-    result = ""
-
-    result += "Course Code: {}".format(sectionCode)
-    result += "Section: {} {}".format(c.sectionType, c.sectionNum)
-    result += "Units: {}".format(c.units)
-    result += "Instructor: {}".format(c.instructor)
-    result += "Days: {}".format(c.days)
-    result += "Time: {}".format(c.time)
-    result += "Building: {}".format(c.building)
-
-    print("Course Code: {}".format(sectionCode))
-    print("Section: {} {}".format(c.sectionType, c.sectionNum))
-    print("Units: {}".format(c.units))
-    print("Instructor: {}".format(c.instructor))
-    print("Days: {}".format(c.days))
-    print("Time: {}".format(c.time))
-    print("Building: {}".format(c.building))
-
-    if c.sectionType == "Lec":
-        print("Final Exam: {}".format(c.final))
-
-    print("Status: {}".format(c.status))
-    print()
-
-    courseDict[sectionCode] = c
-
-def addClass(sectionCode):
-    for i in range(len(schedule)):
+    if time[-1] == "p" or "{}{}".format(time[-2], time[-1]) == "pm":
+        startHour = int("{}{}".format(time[0], time[1]))
+        startMinute = int("{}{}".format(time[3], time[4]))
         
 
+        if time[-1] == "p":
+            endHour = int("{}{}".format(time[-6], time[-5])) + 12
+            endMinute = int("{}{}".format(time[-3], time[-2]))
+        else:
+            endHour = int("{}{}".format(time[-7], time[-6])) + 12
+            endMinute = int("{}{}".format(time[-4], time[-3]))
+        
+        if endHour - 12 >= 3:
+            startHour += 12
+        else:
+            if not(10 <= startHour <= 12):
+                startHour += 12
+
+        if startHour == 24:
+            startHour = 12
+
+        if endHour == 24:
+            endHour = 12
+
+        start = round(startHour + (startMinute / 60), 2)
+        end = round(endHour + (endMinute / 60), 2)
+    else:
+        startHour = int("{}{}".format(time[0], time[1]))
+        startMinute = int("{}{}".format(time[3], time[4]))
+        start = round(startHour + (startMinute / 60), 2)
+
+        if time[-1] == "m":
+            endHour = int("{}{}".format(time[-7], time[-6]))
+            endMinute = int("{}{}".format(time[-4], time[-3]))
+        else:
+            endHour = int("{}{}".format(time[-6], time[-5]))
+            endMinute = int("{}{}".format(time[-3], time[-2]))
+        
+        end = round(endHour + (endMinute / 60), 2)
+    print(endHour)
+    c = Course(sectionType, sectionNum, units, instructor, days, time, building, final, status, start, end)
+    courseDict[sectionCode] = c
+
+    return getCourse(sectionCode, c)
+    
+def addClass(sectionCode):
     schedule[sectionCode] = courseDict[sectionCode]
+
+
+def checkTime(start1, end1, start2, end2):
+    # Time 1 is what we WANT to add... time 2 is already in schedule
+    return not(start2 <= start1 <= end2 or start2 <= end1 <= end2)
     
 
-getClassInfo()
+#print(addClass(1))
+print(getClassInfo())
 
 #serInput2 = input()
 #if userInput2 == sectionCode:
