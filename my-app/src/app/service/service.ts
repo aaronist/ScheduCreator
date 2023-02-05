@@ -29,13 +29,13 @@ export class service{
 
     getInitialData(){
         this.sendRequestToServerGet("").then((data) =>{
-
-            console.log("data is " + data['123']);
-            return null;
+            console.log("data is " + data);
+            console.log("data is " + data['departments']);
+            
+            return data['departments'];
         });
               
         console.log("testing");
-        
     }
 
 
