@@ -6,6 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 
+globalD = {}
 
 @app.route('/department')
 def data():
@@ -14,11 +15,18 @@ def data():
 @app.route('/course', methods= ['POST'])
 def data1():
 
-    data2 = request.get_json()
+    global globalD 
+    globalD= request.get_json()
+    print("data1")
+    print(globalD)
 
-    print(data2)
+@app.route('/courseList')
+def data2():
 
-    return data2
+        #{'term': 'Spring 2022', 'department': 'ANATOMY'}
+    print("data2")
+    print(globalD)
+    return course.getCourseNum(globalD)
 
 
 if __name__ == '__main__':

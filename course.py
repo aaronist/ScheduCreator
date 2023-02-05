@@ -17,12 +17,8 @@ def getTermInfo():
 def getCourseNum(userInput):
     result = set()
 
-    if department == "I&C SCI":
-        department = "I%26C SCI"
-
-
     department = userInput["department"]
-    temp = userInput["term"].split()
+    temp = userInput.split()
     quarter = temp[0]
     year = temp[1]
     response = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term={}%20{}&department={}".format(year, quarter, department)).json()
