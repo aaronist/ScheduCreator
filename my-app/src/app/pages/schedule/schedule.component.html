@@ -52,7 +52,7 @@
     -->
   </datalist>
 
-<input id="step3" list="courses" name="course" placeholder="Course" onchange="document.getElementById('step4').disabled = document.getElementById('step3').value === ''" disabled>
+<input [(ngModel)] = "searchCourse" id="step3" list="courses" name="course" placeholder="Course" onchange="document.getElementById('step4').disabled = document.getElementById('step3').value === ''" disabled>
   <datalist id="courses">
     <option *ngFor = "let coursenumber of courseNumbers">
         {{coursenumber}}
@@ -66,7 +66,7 @@
     -->
   </datalist>
 
-<button id="step4" onclick="document.getElementById('step5').style.display = 'block'" disabled>Search</button>
+<button (click) = "getSchedule()" id="step4" onclick="document.getElementById('step5').style.display = 'block'" disabled>Search</button>
 </div>
 
 <br>

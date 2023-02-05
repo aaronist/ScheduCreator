@@ -19,6 +19,7 @@ def data1():
     globalD= request.get_json()
     print("data1")
     print(globalD)
+    return "Success"
 
 @app.route('/courseList')
 def data2():
@@ -28,6 +29,11 @@ def data2():
     print(globalD)
     return course.getCourseNum(globalD)
 
+@app.route('/schedule')
+def data3():
+    print(course.getClassInfo())
+
+    return course.getClassInfo()
 
 if __name__ == '__main__':
     print('a')

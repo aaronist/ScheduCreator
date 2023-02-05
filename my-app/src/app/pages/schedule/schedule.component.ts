@@ -15,6 +15,9 @@ export class ScheduleComponent {
   terms;
   searchTerm:string = "";
   courseNumbers: any;
+  searchCourse:string = "";
+  
+  schedule:any;
   
   constructor(private service:service){
 
@@ -39,10 +42,7 @@ export class ScheduleComponent {
 
     console.log("term is " + this.searchDepartment);
     this.service.getCourseNumber("/course",this.searchTerm,this.searchDepartment);
-
-
     this.get();
-
   }
 
   get(){
@@ -52,6 +52,15 @@ export class ScheduleComponent {
       this.courseNumbers = data;
 
       console.log("coursenumbers are " + this.courseNumbers);
+    })
+  }
+
+  getSchedule(){
+    console.log("come one");
+    this.service.getSchedule("/schedule").then((data)=>{
+
+        console.log(data);
+        this.schedule = data;
     })
   }
 

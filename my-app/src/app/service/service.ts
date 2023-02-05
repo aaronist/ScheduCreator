@@ -21,7 +21,8 @@ export class service{
     private sendRequestToServerPost(endpoint:string,body:any):Promise<any>{
         const httpOptions = {
             headers: new HttpHeaders({
-              'Content-Type': 'application/json'
+           
+                'Content-Type': 'application/json'
             })
         };
         let temp = this.http.post(this.expressBaseUrl+endpoint,body,httpOptions).toPromise();
@@ -52,6 +53,12 @@ export class service{
     getCourse(endpoint:string){
         return this.sendRequestToServerGet(endpoint).then((data) =>{
 
+            return data;
+        })
+    }
+
+    getSchedule(endpoint:string){
+        return this.sendRequestToServerGet(endpoint).then((data)=>{
             return data;
         })
     }
