@@ -3,8 +3,15 @@
 </head>
 
 <div class="navigation">
-  <button routerLink="home">Home</button>
-  <button routerLink="schedule">Create Schedule</button>
+  <button id="h" onclick="function updateClass() {
+        document.getElementById('h').style.backgroundColor = 'rgb(194, 7, 7)';
+        document.getElementById('s').style.backgroundColor = 'rgb(63, 58, 58)';
+    } updateClass()" routerLink="home">Home</button>
+
+  <button id="s" onclick="function updateClass() {
+        document.getElementById('s').style.backgroundColor = 'rgb(194, 7, 7)';
+        document.getElementById('h').style.backgroundColor = 'rgb(63, 58, 58)';
+    } updateClass()" routerLink="schedule">Create Schedule</button>
 </div>
 
 <main>
