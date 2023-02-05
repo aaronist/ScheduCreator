@@ -5,8 +5,14 @@ h1 {
     font-size: 50px;
 }
 
+
 p {
     padding-left: 15px;
     font-size: 18px;
     font-family: 'Noto Sans JP', sans-serif;
+}
+
+
+div {
+    text-align: center;
 }

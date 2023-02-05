@@ -17,15 +17,5 @@
     background-color: rgb(63, 58, 58);
     border: none;
     transition: background-color 0.2s ease-in-out 20ms;
-}
-
-
-.navigation button:hover {
-    background-color: rgb(164, 136, 185);
-}
-
-
-.navigation button:focus {
-    background-color: #c20707;
-    color: rgb(255, 255, 255);
+    cursor: pointer;
 }
