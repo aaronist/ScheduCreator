@@ -41,10 +41,10 @@ export class service{
         });
     }
 
-    getCourseNumber(endpoint:string){
+    getCourseNumber(endpoint:string,term1:string,department1:string){
         const data = {
-            term: "Winter 2022",
-            department: "SPANISH"
+            term: term1,
+            department: department1
         }
         this.sendRequestToServerPost(endpoint,data);
     }

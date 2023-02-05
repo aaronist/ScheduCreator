@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { service } from 'src/app/service/service';
-import { Department } from 'src/app/data/department';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-schedule',
@@ -10,8 +11,9 @@ import { Department } from 'src/app/data/department';
 })
 export class ScheduleComponent {
   departments: any;
-  searchDepartment:string = ""
+  searchDepartment:string = "";
   terms;
+  searchTerm:string = "";
   courseNumbers: any;
   
   constructor(private service:service){
@@ -27,14 +29,22 @@ export class ScheduleComponent {
     //this.service.getCourseNumber("/courseNumber");
 
     this.courseNumbers = ['ICS31'];
-    this.service.getCourseNumber("/course");
+    
   }
 
+  assignTerm(){
+    console.log("term is " + this.searchTerm);
+
+    
+  }
   getCourse(){
-    this.service.getCourseNumber("/course"); 
+
+    console.log("term is " + this.searchDepartment);
+    this.service.getCourseNumber("/course",this.searchTerm,this.searchDepartment); 
   }
 
 
 
   
 }
+
