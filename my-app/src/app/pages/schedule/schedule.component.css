@@ -72,6 +72,8 @@ button {
     font: 16px/26px 'Noto Sans JP', sans-serif;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    text-align: center;
+    display: none;
 }
 
 
