@@ -21,7 +21,9 @@ export class service{
     private sendRequestToServerPost(endpoint:string,body:any):Promise<any>{
         const httpOptions = {
             headers: new HttpHeaders({
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, ...'
             })
         };
         let temp = this.http.post(this.expressBaseUrl+endpoint,body,httpOptions).toPromise();
