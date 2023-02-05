@@ -27,20 +27,32 @@ export class ScheduleComponent {
     });
 
     //this.service.getCourseNumber("/courseNumber");
-
-    this.courseNumbers = ['ICS31'];
     
   }
 
   assignTerm(){
     console.log("term is " + this.searchTerm);
 
-    
   }
+
   getCourse(){
 
     console.log("term is " + this.searchDepartment);
-    this.service.getCourseNumber("/course",this.searchTerm,this.searchDepartment); 
+    this.service.getCourseNumber("/course",this.searchTerm,this.searchDepartment);
+
+
+    this.get();
+
+  }
+
+  get(){
+
+    this.service.getCourse("/courseList").then((data)=>{
+
+      this.courseNumbers = data;
+
+      console.log("coursenumbers are " + this.courseNumbers);
+    })
   }
 
 

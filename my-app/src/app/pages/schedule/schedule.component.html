@@ -54,11 +54,16 @@
 
 <input id="step3" list="courses" name="course" placeholder="Course" onchange="document.getElementById('step4').disabled = document.getElementById('step3').value === ''" disabled>
   <datalist id="courses">
+    <option *ngFor = "let coursenumber of courseNumbers">
+        {{coursenumber}}
+    </option>
+    <!--
     <option value="33">33</option>
     <option value="2A">2A</option>
     <option value="161">161</option>
     <option value="1">1</option>
     <option value="43">43</option>
+    -->
   </datalist>
 
 <button id="step4" onclick="document.getElementById('step5').style.display = 'block'" disabled>Search</button>

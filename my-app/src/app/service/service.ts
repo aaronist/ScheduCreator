@@ -49,5 +49,14 @@ export class service{
         this.sendRequestToServerPost(endpoint,data);
     }
 
+    getCourse(endpoint:string){
+        return this.sendRequestToServerGet(endpoint).then((data) =>{
+
+            return data;
+        })
+    }
+
+    
+
 
 }
