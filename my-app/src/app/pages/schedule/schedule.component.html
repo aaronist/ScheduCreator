@@ -16,11 +16,16 @@
         document.getElementsByName('department')[0].placeholder = 'Department';
 } step1Change()" placeholder="Term">
   <datalist id="terms">
+    <option *ngFor = "let term of terms">
+        {{term}}
+    </option>
+    <!--
     <option value="Winter 2023">Winter 2023</option>
     <option value="Fall 2022">Fall 2022</option>
     <option value="Spring 2022">Spring 2022</option>
     <option value="Winter 2022">Winter 2022</option>
     <option value="Fall 2021">Fall 2021</option>
+    -->
   </datalist>
 
 <input id="step2" list="departments" name="department" onchange="function step2Change() {
@@ -34,11 +39,16 @@
     document.getElementsByName('course')[0].placeholder = 'Course';
 } step2Change()" placeholder="Department" disabled>
   <datalist id="departments">
+    <option *ngFor = "let department of departments">
+        {{department}}
+    </option>
+    <!--
     <option value="I&C SCI">I&C SCI</option>
     <option value="BIOSCI">BIOSCI</option>
     <option value="COMPSCI">COMPSCI</option>
     <option value="SOCIOL">SOCIOL</option>
     <option value="IN4MATX">IN4MATX</option>
+    -->
   </datalist>
 
 <input id="step3" list="courses" name="course" placeholder="Course" onchange="document.getElementById('step4').disabled = false" disabled>

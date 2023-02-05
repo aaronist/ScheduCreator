@@ -14,8 +14,8 @@ def getTermInfo():
         if not(response[i]["department"] in res):
             res.append(response[i]["department"])
         
-    print(res)
-    return    
+    
+    return res    
         #else:
          #   res[response[i]["department"]].append(response[i]["number"])
 

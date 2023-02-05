@@ -9,7 +9,7 @@ import { Department } from 'src/app/data/department';
   providers: [service]
 })
 export class ScheduleComponent {
-  department: any;
+  departments: any;
   terms;
   courseNumbers: any;
   
@@ -18,9 +18,9 @@ export class ScheduleComponent {
     this.terms = ['Winter 2022', 'Spring 2022', 'Fall 2022', 'Winter 2023'];
 
     this.service.getDepartment("/department").then((data) =>{
-      this.department = data;
+      this.departments = data;
 
-      console.log(this.department);
+      console.log(this.departments);
     });
 
     this.service.getCourseNumber("/courseNumber");
