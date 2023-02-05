@@ -18,8 +18,13 @@ export class service{
         return Promise.resolve(temp);
     }
 
-    private sendRequestToServerPost(endpoint:string):Promise<any>{
-        let temp = this.http.get(this.expressBaseUrl+endpoint).toPromise();
+    private sendRequestToServerPost(endpoint:string,body:any):Promise<any>{
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type': 'application/json'
+            })
+        };
+        let temp = this.http.post(this.expressBaseUrl+endpoint,body,httpOptions).toPromise();
         return Promise.resolve(temp);
     }
 
@@ -37,7 +42,11 @@ export class service{
     }
 
     getCourseNumber(endpoint:string){
-        
+        const data = {
+            term: "Winter 2022",
+            department: "SPANISH"
+        }
+        this.sendRequestToServerPost(endpoint,data);
     }
 
 
