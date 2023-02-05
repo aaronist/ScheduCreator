@@ -34,7 +34,6 @@
 <input [(ngModel)] = "searchDepartment" (change) = "getCourse()" id="step2" list="departments" name="department" onchange="function step2Change() {
     if (!document.getElementById('step3').disabled) {
         document.getElementById('step4').disabled = true;
-        document.getElementById('step4').disabled = true;
     }
     document.getElementById('step3').disabled = document.getElementById('step2').value === '';
     document.getElementsByName('course')[0].value = '';
@@ -76,7 +75,7 @@
             <th style="width: 150px">Days</th>
             <th style="width: 150px">Time</th>
             <th style="width: 150px">Location</th>
-            <th style="width: 150px"></th>
+            <th></th>
         </tr>
         <tr>
             <td>35600</td>
@@ -106,12 +105,12 @@
 <div class="schedule-display">
     <table id="student-schedule" class="paddingBetweenCols">
         <tr>
-            <th>Code</th>
-            <th>Course Title</th>
-            <th>Instructor</th>
-            <th>Days</th>
-            <th>Time</th>
-            <th>Location</th>
+            <th style="width: 150px">Code</th>
+            <th style="width: 150px">Course Title</th>
+            <th style="width: 150px">Instructor</th>
+            <th style="width: 150px">Days</th>
+            <th style="width: 150px">Time</th>
+            <th style="width: 150px">Location</th>
             <th></th>
         </tr>
         <tr>
