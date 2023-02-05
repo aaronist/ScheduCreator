@@ -17,8 +17,12 @@ def getTermInfo():
 def getCourseNum(userInput):
     result = set()
 
+    if department == "I&C SCI":
+        department = "I%26C SCI"
+
+
     department = userInput["department"]
-    temp = userInput.split()
+    temp = userInput["term"].split()
     quarter = temp[0]
     year = temp[1]
     response = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term={}%20{}&department={}".format(year, quarter, department)).json()
@@ -37,7 +41,7 @@ def getCourseNum(userInput):
     #print(res)
    
 
-    
+
     #responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
     #responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring").json()
     #responseF22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Fall").json()
@@ -90,15 +94,30 @@ def getCourseNum(userInput):
 
 
 
-def getClassInfo(department, courseNumber, term, year):
+def getClassInfo(userInput):
     #userInput = input().split()
     #department = userInput[0]
     #courseNumber = userInput[1]
     #term = userInput[2]
     #year = userInput[3]
+    department = userInput["department"]
+    courseNumber = userInput["courseNumber"]
+    temp = userInput["term"].split()
+    term = temp[0]
+    year = temp[1]
 
     if department == "I&C SCI":
         department = "I%26C SCI"
+    elif department == "CLT&THY":
+        department = "CLT%26THY"
+    elif department == "M&MG":
+        department = "M%26MG"
+    elif department == "GEN&SEX":
+        department = "GEN%26SEX"
+    elif department == "FLM&MDA":
+        department = "FLM%26MDA"
+    elif department == "CHC/LAT":
+        department = "CHC/LAT"    
     elif department == "CRM/LAW":
         department = "CRM%2FLAW"
 
@@ -208,7 +227,7 @@ def sortByInstructor():
     return sorted()
 
 #print(addClass(1))
-#print(getCourseNum("MATH", "Winter 2023"))
+print(getTermInfo())
 
 #serInput2 = input()
 #if userInput2 == sectionCode:
