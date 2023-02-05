@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Department } from '../data/department';
 
 @Injectable({
     providedIn: 'root'
@@ -27,15 +28,16 @@ export class service{
         return Promise.resolve(temp);
     }
 
-    getInitialData(){
-        this.sendRequestToServerGet("").then((data) =>{
-            console.log("data is " + data);
-            console.log("data is " + data['departments']);
-            
-            return data['departments'];
+    getDepartment(endpoint:string){
+
+        return this.sendRequestToServerGet(endpoint).then((data) =>{
+    
+            return data;
         });
-              
-        console.log("testing");
+    }
+
+    getCourseNumber(endpoint:string){
+        
     }
 
 
