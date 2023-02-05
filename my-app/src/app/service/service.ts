@@ -21,9 +21,14 @@ export class service{
     private sendRequestToServerPost(endpoint:string,body:any):Promise<any>{
         const httpOptions = {
             headers: new HttpHeaders({
+<<<<<<< HEAD
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, ...'
+=======
+           
+                'Content-Type': 'application/json'
+>>>>>>> ba14c2455bfc2cd905cf207ad5f30d1eb2dfd61f
             })
         };
         let temp = this.http.post(this.expressBaseUrl+endpoint,body,httpOptions).toPromise();
@@ -54,6 +59,12 @@ export class service{
     getCourse(endpoint:string){
         return this.sendRequestToServerGet(endpoint).then((data) =>{
 
+            return data;
+        })
+    }
+
+    getSchedule(endpoint:string){
+        return this.sendRequestToServerGet(endpoint).then((data)=>{
             return data;
         })
     }
