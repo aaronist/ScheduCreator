@@ -13,6 +13,7 @@ def getTermInfo():
     for i in range(len(response)):
         if not(response[i]["department"] in res):
             res.append(response[i]["department"])
+<<<<<<< HEAD
     
 def getCourseNum(department, term):
     result = set()
@@ -36,6 +37,24 @@ def getCourseNum(department, term):
     #print(res)
    
 
+=======
+        
+    
+    return res    
+        #else:
+         #   res[response[i]["department"]].append(response[i]["number"])
+
+    #print(res)
+   
+
+
+ 
+    """  responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
+    responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring").json()
+    responseF22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Fall").json()
+    responseW23 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2023%20Winter").json()
+
+>>>>>>> 94b67e8abc7ef50b4ca3b42caf37add0a45680a8
 
     #responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
     #responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring").json()
