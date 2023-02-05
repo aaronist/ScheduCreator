@@ -11,14 +11,15 @@ export class ScheduleComponent {
   departments;
   courseNumbers;
   
-
   constructor(private service:service){
 
-    this.terms = ['Spring:2023'];
-    this.departments = ['ICS'];
+    this.terms = ['Winter 2022', 'Spring 2022', 'Fall 2022', 'Winter 2023'];
+
     this.courseNumbers = ['ICS31'];
 
-    this.service.getInitialData();
+    this.departments = this.service.getInitialData();
+
+    console.log(this.departments)
     
   }
 

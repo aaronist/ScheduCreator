@@ -15,9 +15,11 @@ def getTermInfo():
             res.append(response[i]["department"])
         #else:
          #   res[response[i]["department"]].append(response[i]["number"])
-    
-    
-    responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
+    print(res)
+
+    return res
+ 
+    """  responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
     responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring").json()
     responseF22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Fall").json()
     responseW23 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2023%20Winter").json()
@@ -33,13 +35,11 @@ def getTermInfo():
         result["Fall 2022"][res[j]] = responseF22["schools"][0]["departments"][0]["courses"]
         result["Winter 2023"][res[j]] = responseW23["schools"][0]["departments"][0]["courses"]
 
-    print(result)
-    return
-
+    print(result) """
     
 
-    print(responseW22)
-    return
+    
+""" 
 
     result["Winter 2022"]["Departments"] = responseW22["schools"][0]["departments"]
     result["Spring 2022"]["Departments"] = responseS22["schools"][0]["departments"]
@@ -52,7 +52,7 @@ def getTermInfo():
     result["Winter 2023"]["Courses"] = responseW23["schools"][0]["courses"]
 
     return result
-
+ """
 
 
 def getClassInfo(department, courseNumber, term, year):
