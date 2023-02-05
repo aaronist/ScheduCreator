@@ -10,6 +10,7 @@ import { Department } from 'src/app/data/department';
 })
 export class ScheduleComponent {
   departments: any;
+  searchDepartment:string = ""
   terms;
   courseNumbers: any;
   
@@ -23,12 +24,17 @@ export class ScheduleComponent {
       console.log(this.departments);
     });
 
-    this.service.getCourseNumber("/courseNumber");
+    //this.service.getCourseNumber("/courseNumber");
 
     this.courseNumbers = ['ICS31'];
-    
-    
+    this.service.getCourseNumber("/course");
   }
+
+  getCourse(){
+    this.service.getCourseNumber("/course"); 
+  }
+
+
 
   
 }
