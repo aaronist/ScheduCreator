@@ -9,13 +9,10 @@ CORS(app)
 
 @app.route('/department')
 def data():
-    # Your data that you want to send to Angular
-
-    #temp = {'departments': []}
-
     return course.getTermInfo()
-    #jsonify(course.getTermInfo())
 
 
 if __name__ == '__main__':
+    print('a')
     app.run(debug=True)
+    

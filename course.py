@@ -7,24 +7,24 @@ schedule = {}
 courseDict = {}
 
 def getTermInfo():
-    result = {"Winter 2022":{}, "Spring 2022":{}, "Fall 2022":{}, "Winter 2023":{}}
     response = requests.get("https://api.peterportal.org/rest/v0/courses/all").json()
     res = []
     for i in range(len(response)):
         if not(response[i]["department"] in res):
             res.append(response[i]["department"])
-<<<<<<< HEAD
+    return res
     
-def getCourseNum(department, term):
+def getCourseNum(userInput):
     result = set()
 
-    temp = term.split()
+    department = userInput["department"]
+    temp = userInput.split()
     quarter = temp[0]
     year = temp[1]
-    response = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term={}}%20{}}r&department={}".format(year, quarter, department)).json()
+    response = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term={}%20{}&department={}".format(year, quarter, department)).json()
 
     for i in range(len(response["schools"][0]["departments"][0]["courses"])):
-        result.add(response["schools"][0]["departments"][0]["courses"][0]["courseNumber"])
+        result.add(response["schools"][0]["departments"][0]["courses"][i]["courseNumber"])
 
     return list(result)
 
@@ -37,25 +37,7 @@ def getCourseNum(department, term):
     #print(res)
    
 
-=======
-        
     
-    return res    
-        #else:
-         #   res[response[i]["department"]].append(response[i]["number"])
-
-    #print(res)
-   
-
-
- 
-    """  responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
-    responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring").json()
-    responseF22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Fall").json()
-    responseW23 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2023%20Winter").json()
-
->>>>>>> 94b67e8abc7ef50b4ca3b42caf37add0a45680a8
-
     #responseW22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Winter&department=MATH").json() 
     #responseS22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Spring").json()
     #responseF22 = requests.get("https://api.peterportal.org/rest/v0/schedule/soc?term=2022%20Fall").json()
@@ -226,7 +208,7 @@ def sortByInstructor():
     return sorted()
 
 #print(addClass(1))
-print(getTermInfo())
+#print(getCourseNum("MATH", "Winter 2023"))
 
 #serInput2 = input()
 #if userInput2 == sectionCode:
