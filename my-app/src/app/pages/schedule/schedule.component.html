@@ -3,18 +3,17 @@
 <p id="header">Create your schedule below!</p>
 
 <div>
-<input list="terms" name="term" onchange="function step1Change() {
-        if (!document.getElementById('step2').disabled) {
+<input id="step1" list="terms" name="term" onchange="function step1Change() {
+        if (!document.getElementById('step2').disabled || !document.getElementById('step1').value) {
             document.getElementById('step3').disabled = true;
             document.getElementsByName('course')[0].value = '';
             document.getElementsByName('course')[0].placeholder = 'Course';
             document.getElementById('step4').disabled = true;
-            document.getElementById('step5').style.display = 'none';
         }
-        document.getElementById('step2').disabled = false;
+        document.getElementById('step2').disabled = document.getElementById('step1').value === '';
         document.getElementsByName('department')[0].value = '';
         document.getElementsByName('department')[0].placeholder = 'Department';
-} step1Change()" placeholder="Term">
+    } step1Change()" placeholder="Term">
   <datalist id="terms">
     <option *ngFor = "let term of terms">
         {{term}}
@@ -24,20 +23,15 @@
     <option value="Fall 2022">Fall 2022</option>
     <option value="Spring 2022">Spring 2022</option>
     <option value="Winter 2022">Winter 2022</option>
-<<<<<<< HEAD
-=======
-    <option value="Fall 2021">Fall 2021</option>
     -->
->>>>>>> 94b67e8abc7ef50b4ca3b42caf37add0a45680a8
   </datalist>
 
 <input id="step2" list="departments" name="department" onchange="function step2Change() {
     if (!document.getElementById('step3').disabled) {
         document.getElementById('step4').disabled = true;
         document.getElementById('step4').disabled = true;
-        document.getElementById('step5').style.display = 'none';
     }
-    document.getElementById('step3').disabled = false;
+    document.getElementById('step3').disabled = document.getElementById('step2').value === '';
     document.getElementsByName('course')[0].value = '';
     document.getElementsByName('course')[0].placeholder = 'Course';
 } step2Change()" placeholder="Department" disabled>
@@ -54,7 +48,7 @@
     -->
   </datalist>
 
-<input id="step3" list="courses" name="course" placeholder="Course" onchange="document.getElementById('step4').disabled = false" disabled>
+<input id="step3" list="courses" name="course" placeholder="Course" onchange="document.getElementById('step4').disabled = document.getElementById('step3').value === ''" disabled>
   <datalist id="courses">
     <option value="33">33</option>
     <option value="2A">2A</option>
